@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+<!--引用百度地图API-->
+<style type="text/css">
+    html,body{margin:0;padding:0;}
+    .iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
+    .iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
+</style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=2.0& ak=jLHqzPMxBaQGQAuhlvKd42jr"></script>
+<link rel="stylesheet" type="text/css" href="C:\Users\hhl\Desktop\BeidouSystem\website\default.css">
+<script>
+	$( "#frmLogin" ).validate({
+    submitHandler: function( form ) {
+        alert( "Call Login Action" );
+    }
+});
+</script>
+<style>
+label.error {
+    color: red;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.4;
+    margin-top: 0.5em;
+    width: 100%;
+    float: none;
+}
+
+@media screen and (orientation: portrait){
+    label.error { margin-left: 0; display: block; }
+}
+
+@media screen and (orientation: landscape){
+    label.error { display: inline-block; margin-left: 22%; }
+}
+
+em { color: red; font-weight: bold; padding-right: .25em; }
+
+.ui-body-f {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Arial, sans-serif;
+}
+.ui-listview .ui-btn-up-c a, 
+.ui-listview .ui-btn-down-c a, 
+.ui-listview .ui-btn-hover-c a {
+  color: #000;
+}
+.ui-bar-findfriends
+{
+	background:#583d96;
+	
+}
+ui-body-f {
+  background: #666;
+  color: #d9bee7;
+}
+
+#header 
+{
+font-family:Chalkduster;
+background: #583d96;
+padding:40;
+font-size:20px;
+border-bottom: 4px solid #9876e7;
+}
+p
+{
+margin:0 0 0 0;
+padding:30 10 30 10;
+font-size:28px;
+color:white;
+font-decoration:bold;
+}
+
+</style>
+<body>
+
+<div data-role="page" id="login">
+	<!--header starts-->
+	<div id="header">
+		<center><p>FREE TRAVEL</p></center>
+	</div>
+	<!--header ends-->
+    
+    <!--banner starts-->
+    <center><img src=".\icon\sea.jpeg" style="z-index:-1;" ></center>
+    <!--banner ends-->
+    
+    <div data-role="content" style="margin-top:-500px;height:400px;margin-bottom:-50px;margin-left:auto;margin-right:auto;">
+        
+        <form id="frmLogin" class="validate">
+            <div data-role="fieldcontain">
+                <label for="email"><em>* </em> <strong>Username: </strong></label>
+                <input type="text" id="email" name="email" 
+                    class="required email" />
+            </div>
+            
+            <div data-role="fieldcontain">
+                <label for="password"><em>* </em><strong>Password:</strong> </label>
+                <input type="password" id="password" name="password"
+                    class="required" />
+            </div>
+            <br/>
+            <div data-role="button" style="margin-top:180px;background:#583d96;width:50%;margin:auto;border: 3px solid #9876e7;">
+                <a href="#newgroup" data-rel="dialog" style="text-decoration:none;color:white;font-size:25px;font-family:Buxton Sketch;">Login</a>
+            </div>
+			<p style="color:black;font-size:20px;margin-left:7%;">（登录即授权获取用户位置信息）</p>
+        </form>
+        
+    </div>
+    <!--footer starts-->
+	<!--footer ends-->
+</div>
+
+
+
+<div data-role="page" data-theme="home" id="home">
+	<!--header starts-->
+	<div id="header">
+		<center><p>FREE TRAVEL</p></center>
+	</div>
+	<!--header ends-->
+	<!--banner starts-->
+		<center><img src=".\icon\sea.jpeg" style="z-index:-1;" ></center>
+	<!--banner ends-->
+	<!--content starts-->
+	<div data-role="content" style="margin-top:-560px;opacity:0.85; height:420px;margin-bottom:-50px;">
+		<ul data-role="listview" data-inset="true" data-theme="c">
+			<li data-icon="false">
+				<a style="height:75px;z-index:-1;">
+				<img src=".\icon\weather.png" style="margin-left:-10px;margin-top:-10px;z-index:2;width:200px;height:155px;">
+				<p style="margin-top:-5px;margin-left:-20px;color:#569FF3;font-size:30px;float:left;">九龙湖</p>
+				<p style="margin-top:5px;margin-left:15px;color:#569FF3;font-size:25px;float:right;">10~22<sup style="font-family:Lucida Sans Unicode;font-size:20px;">℃</sup>
+				</p>
+				</a>
+			</li>
+		</ul>
+		<div class="ui-grid-c" style="margin:0px;">
+			<div class="ui-block-a">
+				<a href="#family" data-role="button" data-transition="slide"><img src=".\icon\grandfather.png" style="height:40px;"></a><br>
+			</div>
+			<div class="ui-block-b">
+				<a href="#" data-role="button"><img src=".\icon\mama.png" style="height:40px;"></a><br>
+			</div>
+			<div class="ui-block-c">
+				<a href="#" data-role="button"><img src=".\icon\littlebrother.png" style="height:40px;"></a><br>
+			</div>
+			<div class="ui-block-d">
+				<a href="#newmember" data-role="button" data-icon="plus" data-iconpos="notext" style="margin-top:35px;"></a><br>
+			</div>  
+		</div>
+		<ul data-role="listview" data-inset="true" data-theme="c" style="margin:0px;">
+			<li><a href="#findfriends" data-transition="slide">寻找旅友</a></li>
+			<li><a href="#help" data-transition="slide">世界互助</a></li>
+			<li><a href="#strategies" data-transition="slide">查看攻略</a></li>
+			<li><a href="#POI" data-transition="slide">探索周边</a></li>
+		</ul>
+		
+	</div>
+	<!--content ends-->
+	<!--footer starts-->
+	<!--footer ends-->
+</div>
+<div data-role="page" id="newmember">
+	<div data-role="header" data-theme="findfriends">
+		<h1 style="color:white;font-size:25px;">Welcome!</h1>
+	</div>
+
+	<div data-role="content"  >
+		<div data-role="fieldcontain">
+                <label for="email"><em>* </em> <strong>请输入要添加的旅伴名字 </strong></label>
+                <input type="text" id="email" name="email" 
+                    class="required email" />
+            </div>
+		<div data-role="button" style="margin-top:30px;background:#583d96;">
+            <a href="#home" style="text-decoration:none;color:white;font-family:SimSun;font-size:20px;">确定添加</a>
+        </div>
+	</div>
+</div>
+
+<div data-role="page" id="newgroup">
+	<div data-role="header" data-theme="findfriends">
+		<h1 style="color:white;font-size:25px;">Welcome!</h1>
+	</div>
+
+	<div data-role="content" >
+		<p style="color:purple;">首次登录，来新建一个结伴玩耍的组群吧~</p>
+		
+		<div data-role="fieldcontain">
+                <label for="email"><em>* </em> <strong>起一个响亮的名字吧: </strong></label>
+                <input type="text" id="email" name="email" 
+                    class="required email" />
+            </div>
+		<div data-role="button" style="margin-top:30px;background:#583d96;">
+            <a href="#home" style="text-decoration:none;color:white;font-family:SimSun;font-size:20px;">确定建立</a>
+        </div>
+	</div>
+</div>
+<div data-role="page" data-theme="f" id="family">
+	<!--header starts-->
+	<div data-role="header" data-theme="findfriends"> 
+		<a href="#home" data-role="button" data-icon="back" data-transition="slide" data-direction="reverse" style="text-decoration:none;"><span style="text-decoration:none;color:white;">back</span></a>
+		<center><p>我的家人</p></center>
+	<a href="#home" data-role="button" data-icon="home" data-transition="flip"  style="text-decoration:none;"><span style="text-decoration:none;color:white;">home</span></a>		
+	</div>
+	<!--header ends-->
+	<!--banner starts-->
+		<center><img src=".\icon\sea.jpeg" style="z-index:-1;" ></center>
+	<!--banner ends-->
+	<!--content starts-->
+		<div data-role="content" id="familymap" data-shadow="true" style="height:375px;width:80%;margin-top:-420px;
+opacity:0.85; margin-bottom:10px;margin-left:auto;margin-right:auto;">
+		</div>
+	<!--content ends-->
+	<!--footer starts-->
+	<!--footer ends-->
+</div>
+
+<div data-role="page" data-theme="f" id="findfriends">
+	<!--header starts-->
+	<div data-role="header" data-theme="findfriends"> 
+		<a href="#home" data-role="button" data-icon="back" data-transition="slide" data-direction="reverse" style="text-decoration:none;"><span style="text-decoration:none;color:white;">back</span></a>
+		<center><p>寻找旅友</p></center>
+	<a href="#home" data-role="button" data-icon="home" data-transition="flip"  style="text-decoration:none;"><span style="text-decoration:none;color:white;">home</span></a>		
+	</div>
+	<!--header ends-->
+	<!--banner starts-->
+		<center><img src=".\icon\sea.jpeg" style="z-index:-1;" ></center>
+	<!--banner ends-->
+	<!--content starts-->
+		<div data-role="content" id="findfriendsmap" data-shadow="true"style="height:380px;width:80%;margin-top:-420px;
+opacity:0.85; margin-bottom:-50px;margin-left:auto;margin-right:auto;z-index:2;">
+		
+		</div>
+	<!--content ends-->
+	<!--footer starts-->
+	<!--footer ends-->
+</div>
+
+<div data-role="page" data-theme="f" id="help">
+	<!--header starts-->
+	<div data-role="header" data-theme="findfriends"> 
+		<a href="#home" data-role="button" data-icon="back" data-transition="slide" data-direction="reverse" style="text-decoration:none;"><span style="text-decoration:none;color:white;">back</span></a>
+		<center><p>世界互助</p></center>
+	<a href="#home" data-role="button" data-icon="home" data-transition="flip"  style="text-decoration:none;"><span style="text-decoration:none;color:white;">home</span></a>		
+	</div>
+	<!--header ends-->
+	<!--banner starts-->
+		<center><img src=".\icon\sea.jpeg" style="z-index:-1;" ></center>
+	<!--banner ends-->
+	<!--content starts-->
+		<div data-role="content" id="helpmap" data-shadow="true"style="height:380px;width:80%;margin-top:-420px;
+opacity:0.85; margin-bottom:-50px;margin-left:auto;margin-right:auto;">
+		</div>
+	<!--content ends-->
+	<!--footer starts-->
+	<!--footer ends-->
+</div>
+<div data-role="page" data-theme="f" id="strategies">
+	<!--header starts-->
+	<div data-role="header" data-theme="findfriends"> 
+		<a href="#home" data-role="button" data-icon="back" data-transition="slide" data-direction="reverse" style="text-decoration:none;"><span style="text-decoration:none;color:white;">back</span></a>
+		<center><p>攻略</p></center>
+	<a href="#home" data-role="button" data-icon="home" data-transition="flip"  style="text-decoration:none;"><span style="text-decoration:none;color:white;">home</span></a>		
+	</div>
+	<!--header ends-->
+	<!--banner starts-->
+		<center><img src=".\icon\sea.jpeg" style="z-index:-1;" ></center>
+	<!--banner ends-->
+	<!--content starts-->
+	<div data-role="content" style="margin-top:-350px;
+	opacity:0.85; height:400px;margin-bottom:-80px;margin-left:auto;margin-right:auto;">
+		<ul data-role="listview" data-inset="true" data-theme="c">
+			<li><a href="#" data-transition="slide">住宿推荐</a></li>
+			<li><a href="#history" data-transition="slide">历史文化</a></li>
+			<li><a href="#" data-transition="slide">民俗节庆</a></li>
+			<li><a href="#" data-transition="slide">路线推荐</a></li>
+			<li><a href="#placeofinterests" data-transition="slide">景点导游</a></li>
+		</ul>
+	</div>
+	<!--content ends-->
+	<!--footer starts-->
+	<!--footer ends-->
+</div>
+<div data-role="page" data-theme="f" id="history">
+	<!--header starts-->
+	<div data-role="header" data-theme="findfriends"> 
+		<a href="#placeofinterests" data-role="button" data-icon="back" data-transition="slide" data-direction="reverse" style="text-decoration:none;"><span style="text-decoration:none;color:white;">back</span></a>
+		<center><p>历史文化</p></center>	
+			<a href="#home" data-role="button" data-icon="home" data-transition="flip"  style="text-decoration:none;"><span style="text-decoration:none;color:white;">home</span></a>
+	</div>
+	<!--header ends-->
+	<!--banner starts-->
+		<center><img src=".\icon\sea.jpeg" style="z-index:-1;" ></center>
+	<!--banner ends-->
+	<!--content starts-->
+	<div data-role="content" style="margin-top:-400px;
+opacity:0.85; height:450px;margin-bottom:10px;margin-left:auto;margin-right:auto;">
+	<img src=".\icon\历史文化.jpg">
+			<span style="background:white;">	
+孙中山先生曾经这样评价过南京：南京为中国古都，在北京之前。其位置乃在一美善之地区。其地有高山，有深水，有平原。此三种天工钟毓一处，在世界之大都市诚难觅如此佳境也。
+南京被视为汉族的复兴之地，在中国历史上具有特殊地位和价值。故朱偰先生在比较了长安、洛阳、金陵、燕京四大古都后，言“此四都之中，文学之昌盛，人物之俊彦，山川之灵秀，气象之宏伟，以及与民族患难相共，休戚相关之密切，尤以金陵为最。”
+			</span>
+	</div>
+	<!--content ends-->
+	<!--footer starts-->
+	<!--footer ends-->
+</div>
+
+<div data-role="page" data-theme="f" id="placeofinterests">
+	<!--header starts-->
+	<div data-role="header" data-theme="findfriends"> 
+		<a href="#strategies" data-role="button" data-icon="back" data-transition="slide" data-direction="reverse" style="text-decoration:none;"><span style="text-decoration:none;color:white;">back</span></a>
+		<center><p>攻略</p></center>
+	<a href="#home" data-role="button" data-icon="home" data-transition="flip"  style="text-decoration:none;"><span style="text-decoration:none;color:white;">home</span></a>		
+	</div>
+	<!--header ends-->
+	<!--banner starts-->
+		<center><img src=".\icon\sea.jpeg" style="z-index:-1;" ></center>
+	<!--banner ends-->
+	<!--content starts-->
+	<div data-role="content" style="margin-top:-450px;
+opacity:0.85; height:400px;margin-bottom:10px;margin-left:auto;margin-right:auto;">
+	<h2>人气景点推荐</h2>
+		<ul data-role="listview" data-inset="true" data-theme="c">
+			
+			<li>
+				<a href="#MingXiaoLing" data-transition="slide">
+				明孝陵
+				</a>
+			</li>
+			<li>
+				<a href="#ZhongShanLing" data-transition="slide">
+				中山陵
+				</a>	
+			</li>
+			<li>
+				<a href="#MeiHuaShan" data-transition="slide">
+				梅花山
+				</a>
+			</li>
+			<li>
+				<a href="#LiuHuiXie" data-transition="slide">
+				流徽榭
+				</a>
+			</li>
+			<li>
+				<a href="#LingGuSi" data-transition="slide">
+				灵谷寺
+				</a>
+			</li>
+			<li>
+				<a href="#SunQuanMu" data-transition="slide">
+				孙权墓
+				</a>
+			</li>
+			<li>
+				<a href="#ZiXiaHu" data-transition="slide">
+				紫霞湖
+				</a>
+			</li>
+		</ul>
+		</ul>
+	</div>
+	<!--content ends-->
+	<!--footer starts-->
+	<!--footer ends-->
+</div>
+
+<div data-role="page" data-theme="f" id="ZhongShanLing">
+	<!--header starts-->
+	<div data-role="header" data-theme="findfriends"> 
+		<a href="#placeofinterests" data-role="button" data-icon="back" data-transition="slide" data-direction="reverse" style="text-decoration:none;"><span style="text-decoration:none;color:white;">back</span></a>
+		<center><p>中山陵</p></center>	
+			<a href="#home" data-role="button" data-icon="home" data-transition="flip"  style="text-decoration:none;"><span style="text-decoration:none;color:white;">home</span></a>
+	</div>
+	<!--header ends-->
+	<!--banner starts-->
+		<center><img src=".\icon\sea.jpeg" style="z-index:-1;" ></center>
+	<!--banner ends-->
+	<!--content starts-->
+	<div data-role="content" style="margin-top:-400px;
+opacity:0.85; height:450px;margin-bottom:10px;margin-left:auto;margin-right:auto;">
+	<img src=".\中山陵.jpg">
+			<span style="background:white;">	
+中山陵位于南京市东郊钟山风景名胜区内，东毗灵谷寺，西邻明孝陵，整个建筑群依山势而建，由南往北沿中轴线逐渐升高，主要建筑有牌坊、墓道、陵门、石阶、碑亭、祭堂和墓室等，排列在一条中轴线上，体现了中国传统建筑的风格，从空中往下看，像一座平卧在绿绒毯上的“自由钟”。
+			</span>
+	</div>
+	<!--content ends-->
+	<!--footer starts-->
+	<div data-role="footer" data-theme="findfriends" style="margin-top:-100px;padding:auto;">
+		<a href="#zhongshanling" data-transition="slide" style="margin-left:30%;text-decoration:none;color:white;padding:auto;">确认选择中山陵</a>
+	</div>
+	<!--footer ends-->
+</div>
+<div data-role="page" data-theme="f"id="zhongshanling">
+	<!--header starts-->
+	<div data-role="header" data-theme="findfriends"> 
+		<a href="#ZhongShanLing" data-role="button" data-icon="back" data-transition="slide" data-direction="reverse" style="text-decoration:none;"><span style="text-decoration:none;color:white;">back</span></a>
+		<center><p>推荐路线</p></center>
+	<a href="#home" data-role="button" data-icon="home" data-transition="flip"  style="text-decoration:none;"><span style="text-decoration:none;color:white;">home</span></a>		
+	</div>
+	<!--header ends-->
+	<!--banner starts-->
+		<center><img src=".\icon\sea.jpeg" style="z-index:-1;" ></center>
+	<!--banner ends-->
+	<!--content starts-->
+		<div data-role="content" id="zhongshanlingmap" data-shadow="true" style="height:380px;width:80%;margin-top:-417px;
+		opacity:0.85;margin-bottom:-50px;margin-left:auto;margin-right:auto;">
+		
+		</div>
+	<!--content ends-->
+	<!--footer starts-->
+	<!--footer ends-->
+</div>
+
+<div data-role="page" data-theme="f" id="LiuHuiXie">
+	<!--header starts-->
+	<div data-role="header" data-theme="findfriends"> 
+		<a href="#placeofinterests" data-role="button" data-icon="back" data-transition="slide" data-direction="reverse" style="text-decoration:none;"><span style="text-decoration:none;color:white;">back</span></a>
+		<center><p>流徽榭</p></center>	
+			<a href="#home" data-role="button" data-icon="home" data-transition="flip"  style="text-decoration:none;"><span style="text-decoration:none;color:white;">home</span></a>
+	</div>
+	<!--header ends-->
+	<!--banner starts-->
+		<center><img src=".\icon\sea.jpeg" style="z-index:-1;" ></center>
+	<!--banner ends-->
+	<!--content starts-->
+	<div data-role="content" style="margin-top:-400px;
+opacity:0.85; height:400px;margin-bottom:10px;margin-left:auto;margin-right:auto;">
+	<img src=".\流徽榭.jpg">
+			<span style="background:white;">
+				流徽榭又名水榭亭，是南京钟山风景名胜区内一处景色优美的风景点，位于中山陵园，在中山陵至灵谷寺公路的南边。榭长14米，宽 10米，顶为乳白琉璃瓦，红色立柱； 三面临水，碧水如镜，倒映水榭， 别有情趣。
+
+			</span>
+	</div>
+	<!--content ends-->
+	<!--footer starts-->
+	<div data-role="footer" data-theme="findfriends" style="margin-top:-50px;padding:auto;">
+		<a href="#zhongshanling" data-transition="slide" style="margin-left:30%;text-decoration:none;color:white;padding:auto;">确认选择流徽榭</a>
+	</div>
+	<!--footer ends-->
+</div>
+
+<div data-role="page" data-theme="f" id="POI">
+	<!--header starts-->
+	<div data-role="header" data-theme="findfriends"> 
+		<a href="#home" data-role="button" data-icon="back" data-transition="slide" data-direction="reverse" style="text-decoration:none;"><span style="text-decoration:none;color:white;">back</span></a>
+		<center><p>探索周边</p></center>	
+			<a href="#home" data-role="button" data-icon="home" data-transition="flip"  style="text-decoration:none;"><span style="text-decoration:none;color:white;">home</span></a>
+	</div>
+	<!--header ends-->
+	<!--banner starts-->
+		<center><img src=".\icon\sea.jpeg" style="z-index:-1;" ></center>
+	<!--banner ends-->
+	<!--content starts-->
+	<div data-role="content" style="margin-top:-400px;
+opacity:0.85; height:400px;margin-bottom:-30px;margin-left:auto;margin-right:auto;">
+			<div class="ui-grid-b">
+				<div class="ui-block-a">
+					<a href="#hotel" data-role="button" data-transition="flip"><img src=".\icon\hotel.png"  style="height:60px;"></a><br>
+				</div>
+				<div class="ui-block-b">
+					<a href="#" data-role="button"><img src=".\icon\restaurant.png" style="height:60px;"></a><br>
+				</div>
+				<div class="ui-block-c">
+					<a href="#" data-role="button"><img src=".\icon\ATM.png" style="height:60px;"></a><br>
+				</div>
+			</div>
+			<div class="ui-grid-b">
+				<div class="ui-block-a">
+					<a href="#" data-role="button"><img src=".\icon\toilet.png" style="height:60px;"></a><br>
+				</div>
+				<div class="ui-block-b">
+					<a href="#" data-role="button"><img src=".\icon\busstation.png" style="height:60px;"></a><br>
+				</div>
+				<div class="ui-block-c">
+					<a href="#" data-role="button"><img src=".\icon\hospital.png" style="height:60px;"></a><br>
+				</div>
+			</div>
+			<div class="ui-grid-b">
+				<div class="ui-block-a">
+					<a href="#" data-role="button"><img src=".\icon\gasstation.png" style="height:60px;"></a><br>
+				</div>
+				<div class="ui-block-b">
+					<a href="#" data-role="button"><img src=".\icon\shopping.png" style="height:60px;"></a><br>
+				</div>
+				<div class="ui-block-c">
+					<a href="#" data-role="button"><img src=".\icon\police.png" style="height:60px;"></a><br>
+				</div>
+			</div>
+		</div>
+		
+	<!--content ends-->
+	<!--footer starts-->
+	<!--footer ends-->
+</div>
+
+<div data-role="page" data-theme="f"id="hotel">
+	<!--header starts-->
+	<div data-role="header" data-theme="findfriends"> 
+		<a href="#POI" data-role="button" data-icon="back" data-transition="flip" style="text-decoration:none;"><span style="text-decoration:none;color:white;">back</span></a>
+		<center><p>周边酒店</p></center>
+	<a href="#home" data-role="button" data-icon="home" data-transition="flip"  style="text-decoration:none;"><span style="text-decoration:none;color:white;">home</span></a>		
+	</div>
+	<!--header ends-->
+	<!--banner starts-->
+		<center><img src=".\icon\sea.jpeg" style="z-index:-1;" ></center>
+	<!--banner ends-->
+	<!--content starts-->
+		<div data-role="content" id="hotelmap" data-shadow="true" style="height:380px;width:80%;margin-top:-417px;
+		opacity:0.85;margin-bottom:-50px;margin-left:auto;margin-right:auto;">
+		
+		</div>
+	<!--content ends-->
+	<!--footer starts-->
+	<!--footer ends-->
+</div>
+</body>
+</html>
+<script>  
+// 百度地图API功能
+var map = new BMap.Map("familymap");            // 创建Map实例
+var point1 = new BMap.Point(118.84830667609205,32.06409758550333 );    // 创建点坐标
+var point2 = new BMap.Point(118.84545192971228,32.06760101371922 );    // 创建点坐标
+map.centerAndZoom(point1,13);                     // 初始化地图,设置中心点坐标和地图级别。
+map.enableScrollWheelZoom();                            //启用滚轮放大缩小
+var marker1 = new BMap.Marker(point1);        // 创建标注    
+map.addOverlay(marker1);                     // 将标注添加到地图中 
+marker1.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+var marker2 = new BMap.Marker(point2);        // 创建标注    
+map.addOverlay(marker2); 
+</script>
+<script>
+	  
+// 百度地图API功能
+var map = new BMap.Map("findfriendsmap");            // 创建Map实例
+var point1 = new BMap.Point(118.84830667609205,32.06409758550333 );    // 创建点坐栿
+var point2 = new BMap.Point(118.84610667609205,32.06109758550333 );    // 创建点坐栿
+var point3 = new BMap.Point(118.84550667609205,32.06809758550333 );    // 创建点坐栿
+var point4 = new BMap.Point(118.84940667609205,32.06309758550333 );    // 创建点坐栿
+var point5 = new BMap.Point(118.84530667609205,32.06409758550333 );    // 创建点坐栿
+map.centerAndZoom(point1,13);                     // 初始化地囿设置中心点坐标和地图级别?
+map.enableScrollWheelZoom();                            //启用滚轮放大缩小
+var marker1 = new BMap.Marker(point1);        // 创建标注    
+map.addOverlay(marker1);                     // 将标注添加到地图丿
+marker1.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+var marker2 = new BMap.Marker(point2);        // 创建标注    
+map.addOverlay(marker2);                     // 将标注添加到地图丿
+var marker3 = new BMap.Marker(point3);        // 创建标注    
+map.addOverlay(marker3);                     // 将标注添加到地图丿
+var marker4 = new BMap.Marker(point4);        // 创建标注    
+map.addOverlay(marker4);                     // 将标注添加到地图丿
+var marker5 = new BMap.Marker(point5);        // 创建标注    
+map.addOverlay(marker5);                     // 将标注添加到地图丿
+</script>
+<script>
+	  
+// 百度地图API功能
+var map = new BMap.Map("helpmap");            // 创建Map实例
+var point1 = new BMap.Point(118.84830667609205,32.06409758550333 );    // 创建点坐标
+var point2 = new BMap.Point(118.84610667609205,32.06029758550333 );    // 创建点坐标
+map.centerAndZoom(point1,15);                     // 初始化地图,设置中心点坐标和地图级别。
+map.enableScrollWheelZoom();                            //启用滚轮放大缩小
+var marker1 = new BMap.Marker(point1);        // 创建标注    
+map.addOverlay(marker1);                     // 将标注添加到地图中
+
+var marker2 = new BMap.Marker(point2);        // 创建标注    
+marker2.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画 
+map.addOverlay(marker2);                     // 将标注添加到地图中 
+var opts = {
+  width : 60,     // 信息窗口宽度
+  height: 105,     // 信息窗口高度
+  title : "Help" , // 信息窗口标题
+  enableMessage:true,//设置允许信息窗发送短息
+  message:"亲耐滴，晚上一起吃个饭吧？戳下面的链接看下地址喔~"
+}
+var infoWindow = new BMap.InfoWindow("我的雨伞丢了，蓝色伞面，白色印花，有哪个好心人看到了么。。。", opts);  // 创建信息窗口对象
+map.openInfoWindow(infoWindow,point1); //开启信息窗口
+</script>
+<script type="text/javascript">
+
+// 百度地图API功能
+var map = new BMap.Map("hotelmap");            // 创建Map实例
+map.centerAndZoom(new BMap.Point(118.84830667609205,32.06409758550333), 18);
+var local = new BMap.LocalSearch(map, {
+  renderOptions:{map: map, autoViewport:true}
+});
+local.searchNearby("酒店", "中山陵");
+</script>
+<script>
+var map = new BMap.Map("zhongshanlingmap");
+		map.centerAndZoom(new BMap.Point(118.84830667609205,32.06409758550333), 15);
+		var walking = new BMap.WalkingRoute(map, {renderOptions:{map: map, autoViewport: true}});
+		walking.search("明孝陵", "中山陵");
+</script>
